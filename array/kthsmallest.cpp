@@ -27,7 +27,7 @@ int main()
 }
 
 int kthSmallest(int arr[], int l, int r, int k) {
-    //code here
+    
     priority_queue <int> q;
     for (int i=0;i<k;i++)
     {
