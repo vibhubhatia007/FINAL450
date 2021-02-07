@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
   public:
     int findPosition(int n) {
@@ -26,4 +27,4 @@ int main() {
         cout << ob.findPosition(N) << endl;
     }
     return 0;
-}  /
+}  
