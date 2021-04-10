@@ -1,12 +1,14 @@
+// { Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
-
+ // } Driver Code Ends
 class Solution
 {
 public:
     vector<int> singleNumber(vector<int> nums) 
     {
+        // Code here.
         int xr = 0;
         for(int i=0;i<nums.size();i++)
         {
@@ -42,7 +44,7 @@ public:
     }
 };
 
-
+// { Driver Code Starts.
 int main(){
     int T;
     cin >> T;
@@ -60,4 +62,4 @@ int main(){
     	cout << "\n";
     }
 	return 0;
-} 
+}  // } Driver Code Ends
