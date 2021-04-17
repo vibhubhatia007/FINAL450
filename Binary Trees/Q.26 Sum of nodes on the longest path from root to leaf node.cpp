@@ -102,3 +102,32 @@ int sumOfLongRootToLeafPath(Node* root)
 	
 	return ans;
 }
+
+
+///////////Method-2/////////////
+
+void solve(Node* root,int sum,int length,int &maxsum,int &maxl)
+{
+    if(root==NULL)
+    {
+        if(length>maxl||(maxl==length&&sum>maxsum))
+        {
+            maxsum=sum;
+            maxl=length;
+        }
+        
+        return ;
+    }
+    
+    solve(root->left,sum+root->data,length+1,maxsum,maxl);
+    solve(root->right,sum+root->data,length+1,maxsum,maxl);
+}
+
+int sumOfLongRootToLeafPath(Node* root)
+{
+	// Code here
+	int maxsum=0;int maxl=0;
+	solve(root,0,0,maxsum,maxl);
+	
+	return maxsum;
+}

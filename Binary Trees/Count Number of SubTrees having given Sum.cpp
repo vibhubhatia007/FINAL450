@@ -1,12 +1,15 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
+// Tree Node
 struct Node
 {
     int data;
-    struct Node *left;
-    struct Node *right;
+    Node* left;
+    Node* right;
 };
+
 // Utility function to create a new Tree Node
 Node* newNode(int val)
 {
@@ -17,6 +20,7 @@ Node* newNode(int val)
     
     return temp;
 }
+
 // Function to Build Tree
 Node* buildTree(string str)
 {   
@@ -80,46 +84,46 @@ Node* buildTree(string str)
     
     return root;
 }
-void inorder(Node * node)
-{
-    if(node==NULL)
-        return;
-    
-    inorder(node->left);
-    cout<<node->data<<" ";
-    inorder(node->right);
-}
-void toSumTree(Node *node);
+
+// Your are required to complete this function
+int countSubtreesWithSumX(Node* root, int x);
+
 int main()
 {
-
-    int t;
-	scanf("%d ",&t);
-    while(t--)
-    {
-        string s;
-		getline(cin,s);
-        Node* root = buildTree(s);
-        toSumTree(root);
-        inorder(root);
-        cout<<endl;
-    }
-    return 1;
+  int t;
+  cin>>t;
+  getchar();
+  while (t--)
+  {
+     string s;
+     getline(cin,s);
+     Node* root = buildTree(s);
+     
+     int x;
+     cin>>x;
+     getchar();
+     cout << countSubtreesWithSumX(root, x)<<endl;
+  }
+  return 0;
 }
 
-int Sum(Node *Node)
+int solve(Node* root,int target,int &ans)
 {
-    if(Node == NULL)  
-    return 0;  
-
-    int old_val = (Node)->data;  
-
-    (Node)->data = Sum((Node)->left) + Sum((Node)->right);  
-  
-    return (Node)->data + old_val;  
+    if(root==NULL)
+    return 0;
+    
+    int sum = root->data+solve(root->left,target,ans)+solve(root->right,target,ans);
+    
+    if(sum==target)
+    ans++;
+    
+    return sum;
 }
-void toSumTree(Node *Node)
+
+int countSubtreesWithSumX(Node* root, int X)
 {
-    Sum(Node);
+	// Code here
+	int ans=0;
+	solve(root,X,ans);
+	return ans;
 }
-

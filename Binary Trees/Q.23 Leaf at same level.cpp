@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -84,9 +85,39 @@ Node* buildTree(string str)
     return root;
 }
 
-bool check(Node* node);
 
-// Driver program to test size function
+class Solution{
+  public:
+    /*You are required to complete this method*/
+    
+    void solve(Node* root,set<int> &s,int h)
+    {
+        if(root==NULL)
+        return ;
+        if(root->left==NULL&&root->right==NULL)
+        {
+            s.insert(h);
+            return ;
+        }
+        
+        solve(root->left,s,h+1);
+        solve(root->right,s,h+1);
+        
+    }
+    
+    bool check(Node *root)
+    {
+        //Your code here
+       set<int> s;
+       solve(root,s,0);
+       
+       if(s.size()==1)
+       return 1;
+       else
+       return 0;
+    }
+};
+
 int main()
 {
     int t;
@@ -97,34 +128,8 @@ int main()
         string s;
         getline( cin, s );
         Node* head = buildTree( s );
-        
-        cout << check(head) << endl;
+        Solution obj;
+        cout << obj.check(head) << endl;
     }
     return 0;
-}
-
-bool check(struct Node *root,int level, int *leafLevel)
-{
-    if (root == NULL) return true;
- 
-    if (root->left == NULL && 
-        root->right == NULL)
-    {
-        if (*leafLevel == 0)
-        {
-            *leafLevel = level; 
-            return true;
-        }
-        return (level == *leafLevel);
-    }
-    return check(root->left, level + 1, leafLevel) &&
-            check(root->right, level + 1, leafLevel);
-}
-
-bool check(Node *root)
-{
-    int l=0;
-    return check(root,0,&l);
-   
-  
 }
