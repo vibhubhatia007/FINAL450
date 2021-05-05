@@ -1,51 +1,84 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 
 
-int main() {
-int t;
-cin>>t;
-while(t--)
-{
-    string s;
-    cin>>s;
-    //map<char,int> m;
-    int m[150]={0};
-    int i;
-    for(i=0;i<s.length();i++)
-    {
-        m[s[i]]++;
-    }
-  
-    int j=s.length()-1;
-       while(m[s[j]]>1)
-    {
-        m[s[j]]--;
-        j--;
-    }
-    i=0;
-    while(m[s[i]]>1&&i<=j)
-    {
-        m[s[i]]--;
-        i++;
-    }
-     int min=j-i+1;
-    int t1=i,t2=j;
-    while(j<s.length())
+
+class Solution{
+    public:
+    string findSubString(string s)
     {
         
-        j++;
-        m[s[j]]++;
-        while(m[s[i]]>1&&i<=j)
+        int target = 0;int n =s.size();
+        unordered_map<char,int> m;
+        for(int i=0;i<s.size();i++)
         {
-             m[s[i]]--;
-            i++;
+            if(m[s[i]]==0)
+            {
+                target++;
+                m[s[i]]++;
+            }
         }
-        if(j-i+1<min)
-        {min=j-i+1;t1=i;t2=j;}
+        
+        m.clear();int ans=INT_MAX;int start,end;string y;
+
+        int i=0;int j=0; int c=0;
+        while(i<n&&j<n)
+        {
+           
+            while(c<target&&i<n)
+            {
+                m[s[i]]++;
+                if(m[s[i]]==1)
+                {
+                    c++;
+                }
+                i++;
+            }
+            
+            // if(i-j<ans&&c>=target)
+            // {ans=i-j;
+            // start=j;
+            // }
+   
+            
+            while(c>=target&&j<n)
+            {
+                 if(i-j<ans&&c>=target)
+                {ans=i-j;
+                start=j;
+                }
+                 m[s[j]]--;
+                 if(m[s[j]]==0)
+                {
+                    c--;
+                   
+                }
+                j++;
+               
+            }
+       
+            
+        }
+       
+        
+        string x ;
+        x = s.substr(start,ans);
+        return x;
+        
     }
-    // cout<<t1<<" "<<t2<<"\n";
-  
-    cout<<min<<"\n";
-}
-}
+};
+
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+
+        string str;
+        cin >> str;
+        Solution ob;
+        cout << ob.findSubString(str).size() << endl;
+    }
+    return 0;
+} 
