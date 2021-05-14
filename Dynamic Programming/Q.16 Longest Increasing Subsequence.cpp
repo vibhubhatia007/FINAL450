@@ -5,20 +5,16 @@ int longestSubsequence(int, int[]);
 
 int main()
 {
-    //taking total testcases
     int t,n;
     cin>>t;
     while(t--)
     {
-        //taking size of array
         cin>>n;
         int a[n];
         
-        //inserting elements to the array
         for(int i=0;i<n;i++)
             cin>>a[i];
 
-        //calling method longestSubsequence()
         cout << longestSubsequence(n, a) << endl;
     }
 }

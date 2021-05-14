@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <bits/stdc++.h>
 using namespace std;
-
 
 struct Node
 {
@@ -17,8 +14,8 @@ struct Node
 	}
 };
 
-
 int LISS(struct Node *root);
+
 
 int main()
 {
@@ -60,7 +57,7 @@ int main()
 
 int LISS(struct Node *root)
 {
-    //Code here
+
     if(root==NULL)
     return 0;
 

@@ -2,6 +2,41 @@
 using namespace std;
 
 
+/////////////Solution 1 using gap strategy/////////////////////
+
+long long maximumAmount(int arr[], int n) 
+{
+    // Your code here
+    
+    long long dp[n][n];
+    memset(dp,0,sizeof(dp));
+    long long val1,val2;
+    
+    for(int g=0;g<n;g++)
+    {
+        for(int i=0,j=g;j<n;i++,j++)
+        {
+            if(g==0)
+            dp[i][j] = arr[i];
+            else if(g==1)
+            dp[i][j] = max(arr[i],arr[j]);
+            else
+            {
+             int val1 = arr[i] + min(dp[i+2][j],dp[i+1][j-1]);
+            // arr[i] + min(i+1,j)
+             int val2 =  arr[j] + min(dp[i+1][j-1],dp[i][j-2]);
+             // arr[j] + min(i,j-1)
+             dp[i][j] = max(val1,val2);
+            }
+        }
+    }
+    
+    return dp[0][n-1];
+}
+
+///////////////////Solution 2/////////////////////////////////////
+
+
  long long  dp[1000][1000]; 
  
 long long solve(int arr[],int i,int j,int s)

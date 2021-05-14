@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 class Solution{
 public:
     int maxSquare(int n, int m, vector<vector<int>> mx){
@@ -55,4 +56,4 @@ int main(){
         cout<<ob.maxSquare(n, m, mat)<<"\n";
     }
     return 0;
-} 
+}  
